@@ -5,7 +5,7 @@ import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import * as ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import swDev from './swDev'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -21,5 +21,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-swDev()
