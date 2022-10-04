@@ -1,11 +1,30 @@
 import Background from 'components/background'
 import HomeAnchorImg from 'components/homeanchorimg'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserProfileById, onAppData } from 'redux/actions/appActions'
+import { getApp } from 'redux/reducers/appReducer'
+import { getUser } from 'redux/reducers/userReducer'
 
 export default function Home() {
+
+  const dispatch = useDispatch()
+  const { defaultStates: { isLoading }, data } = useSelector(getApp)
+  const { defaultStates: { isLoading: isUserLoading }, data: userData } = useSelector(getUser)
+
+  useEffect(() => {
+    dispatch(onAppData())
+    dispatch(getUserProfileById(4))
+  }, [dispatch, data?.length, userData?.length])
+
   return (
     <>
-      <Background imgUrl={'https://images.unsplash.com/photo-1664735811531-08725ce378c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80'} styles={'bg-img'} />
-      <HomeAnchorImg />
+      {(isLoading || isUserLoading) ? (<div className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : (
+        <>
+          <Background imgUrl={data[0]?.coverMedia} styles={'bg-img'} />
+          <HomeAnchorImg data={data[0]} userData={userData[0]} />
+        </>
+      )}
     </>
   )
 }

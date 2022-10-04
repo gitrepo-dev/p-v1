@@ -2,18 +2,20 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 // reducers
-import eventReducer from 'redux/reducers/eventReducer';
+import appReducer from 'redux/reducers/appReducer';
+import userReducer from 'redux/reducers/userReducer';
 // sagas
-import eventSaga from 'redux/sagas/eventSaga';
+import appSaga from 'redux/sagas/appSaga';
 // reducers
 const reducers = combineReducers({
-    event: eventReducer,
+    user: userReducer,
+    app: appReducer,
 });
 
 //Add Sagas
 function* rootSaga() {
     yield all([
-        ...eventSaga
+        ...appSaga
     ]);
 }
 

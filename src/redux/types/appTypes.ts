@@ -1,0 +1,6 @@
+const ACTION_TYPES = {
+    GET_APP_DATA: 'GET_APP_DATA',
+    GET_APP_DATA_BY_ID: 'GET_APP_DATA_BY_ID'
+}
+
+export default ACTION_TYPES;
