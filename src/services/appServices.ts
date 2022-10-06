@@ -5,7 +5,7 @@
  * @returns {null}
  */
 
-export const getAppService = async (): Promise<object> => {
+export const getAppService = async (id:number): Promise<object> => {
     try {
         const res = await fetch('https://bodegaproduction.azurewebsites.net/filterPublicURL/', {
             headers: {
@@ -14,7 +14,7 @@ export const getAppService = async (): Promise<object> => {
             },
             method: 'POST',
             body: JSON.stringify({
-                ownerMetaUserID: 4
+                ownerMetaUserID: Number(id)
             })
         });
         return await res.json()
@@ -39,7 +39,7 @@ export const getAppService = async (): Promise<object> => {
             },
             method: 'POST',
             body: JSON.stringify({
-                metauserID: id
+                metauserID: Number(id)
             })
         });
         return await res.json()

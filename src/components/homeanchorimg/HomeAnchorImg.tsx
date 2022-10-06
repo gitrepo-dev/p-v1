@@ -1,9 +1,9 @@
 import { upArrow } from 'assets'
 import { Link } from 'react-router-dom'
 
-export default function HomeAnchorImg({ data, userData }: any) {
+export default function HomeAnchorImg({ urlVal, data, userData }: any) {
   return (
-    <Link to="/details">
+    <Link to={urlVal? `details?name=${urlVal}` : 'details'}>
       <div className="home-anchor absolute">
         <div>
           <span className="flex items-center flex-col justify-center mb-5">

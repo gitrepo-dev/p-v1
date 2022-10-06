@@ -26,7 +26,8 @@ import { setUser, setUserStates } from 'redux/reducers/userReducer';
   * @return {'data/err'}
   * 
 ***/
-function* fetchingEvents(): SagaIterator {
+function* fetchingEvents(action: any): SagaIterator {
+  const { payload } = action;
   try {
     yield put(setAppStates({
       isLoading: true,
@@ -34,15 +35,32 @@ function* fetchingEvents(): SagaIterator {
       action: 'fetch',
       success: false
     }));
-    const data = yield call(getAppService);
-    yield put(setApp(data));
+    const data = yield call(getAppService, payload);
+    if (data === 'ERROR') {
+      yield put(setApp(data));
+      yield put(setAppStates({
+        isLoading: false,
+        message: 'error',
+        action: 'fetch',
+        success: data.success
+      }));
+    } else {
+      yield put(setApp(data));
+      yield put(setAppStates({
+        isLoading: false,
+        message: 'success',
+        action: 'fetch',
+        success: data.success
+      }));
+    }
+
+  } catch (e) {
     yield put(setAppStates({
       isLoading: false,
-      message: data.message,
+      message: '',
       action: 'fetch',
-      success: data.success
+      success: false
     }));
-  } catch (e) {
     console.warn('Client side error', e);
   }
 }
@@ -71,14 +89,30 @@ function* fetchingProfileById(action: any): SagaIterator {
       success: false
     }));
     const data = yield call(getMetaUserService, payload);
-    yield put(setUser(data));
-    yield put(setUserStates({
-      isLoading: false,
-      message: data.message,
-      action: 'fetch',
-      success: data.success
-    }));
+    if (data === 'ERROR') {
+      yield put(setUser(data));
+      yield put(setAppStates({
+        isLoading: false,
+        message: 'error',
+        action: 'fetch',
+        success: data.success
+      }));
+    } else {
+      yield put(setUser(data));
+      yield put(setAppStates({
+        isLoading: false,
+        message: 'success',
+        action: 'fetch',
+        success: data.success
+      }));
+    }
   } catch (e) {
+    yield put(setAppStates({
+      isLoading: false,
+      message: '',
+      action: 'fetch',
+      success: false
+    }));
     console.warn('Client side error', e);
   }
 }
