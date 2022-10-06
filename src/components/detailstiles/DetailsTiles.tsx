@@ -7,7 +7,7 @@ export default function DetailsTiles({ urlVal, data, userData }: any) {
   return (
     <div className="relative p-5 md:p-10">
 
-      <Link to={urlVal ? `/?name=${urlVal}` : '/'}>
+      <Link to={urlVal ? `/?id=${urlVal}` : '/'}>
         <div className="home-anchor mb-5">
           <div className="img-holder relative">
             <img src={userData?.metauserProfileLogo} alt="" className="w-full" />
