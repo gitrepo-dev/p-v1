@@ -14,7 +14,7 @@ export default function CreateEvent() {
   const { defaultStates: { isLoading: isUserLoading }, data: userData } = useSelector(getUser)
 
   const [searchParams] = useSearchParams();
-  const urlVal = searchParams.get('name')
+  const urlVal = searchParams.get('id')
 
   useEffect(() => {
     dispatch(onAppData(urlVal ? urlVal : 4))
