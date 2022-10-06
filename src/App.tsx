@@ -1,6 +1,4 @@
 import './App.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Parallax, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -9,9 +7,6 @@ import { Routes, Route } from "react-router-dom";
 const NotFound = React.lazy(() => import('pages/NotFound'));
 const Home = React.lazy(() => import('pages/home'));
 const DetailsPage = React.lazy(() => import('pages/details'));
-// import Home from 'pages/home'
-// import DetailsPage from 'pages/details'
-
 
 function App() {
   return (
@@ -20,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/details" element={<DetailsPage />} />
+          {/* <Route path={rot === '/' ? '/' : `/${location?.pathname?.split('/')?.at(-1)}`} element={<Home />} /> */}
+          {/* <Route path={rot === '/details' ? '/details' : `/details/${location?.pathname?.split('/')?.at(-1)}`} element={<DetailsPage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

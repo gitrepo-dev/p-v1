@@ -6,9 +6,9 @@ import Types from 'redux/types/appTypes';
  * @return {''}
  * 
 ***/
-export const onAppData = () => ({
+export const onAppData = (id:number | string) => ({
     type: Types.GET_APP_DATA,
-    payload: []
+    payload: id
 });
 
 
