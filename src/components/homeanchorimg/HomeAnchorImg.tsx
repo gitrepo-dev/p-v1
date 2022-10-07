@@ -2,6 +2,8 @@ import { upArrow } from 'assets'
 import { Link } from 'react-router-dom'
 
 export default function HomeAnchorImg({ urlVal, data, userData }: any) {
+
+
   return (
     // <Link to={urlVal? `/${urlVal}` : 'details'}>
     <Link to={urlVal !== '/' ? `/details/${urlVal?.split('/').at(-1)}` : '/details'}>
@@ -13,10 +15,10 @@ export default function HomeAnchorImg({ urlVal, data, userData }: any) {
             <img src={upArrow} alt="icons" />
           </span>
           <div className="img-holder">
-            <img src={userData?.metauserProfileLogo} alt="" className="w-full" />
+            <img src={data?.metauserProfileLogo} alt="" className="w-full" />
           </div>
         </div>
-        <div className="text-white font-bold text-2xl mt-3 capitalize">{data?.metausername}</div>
+        <div className="text-white font-bold text-2xl mt-3 capitalize">{userData?.metausername}</div>
       </div>
     </Link>
   )

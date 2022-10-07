@@ -38,14 +38,16 @@
 
  export const getAppService = async (id:number): Promise<object> => {
     try {
-        const res = await fetch('https://bodegaproduction.azurewebsites.net/filterPublicURL/', {
+        // https://bodegaproduction.azurewebsites.net/filterPublicURL/
+        const res = await fetch('https://bodegaproduction.azurewebsites.net/bodega-api/filterMetaUserTags/', {
             headers: {
                 'x-api-key': `${process.env.REACT_APP_API_KEY}`,
                 'content-Type': 'application/json'
             },
             method: 'POST',
             body: JSON.stringify({
-                ownerMetaUserID: Number(id)
+                // ownerMetaUserID: Number(id)
+                metauserID: Number(id)
             })
         });
         return await res.json()

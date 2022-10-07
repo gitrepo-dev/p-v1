@@ -30,8 +30,7 @@ export default function CreateEvent() {
     <>
       {(message === "ERROR" || data?.length === 0 || userData?.length === 0) && '404 not found.'}
       {(isLoading) ? (<div className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : (<>
-        <Background imgUrl={data[0]?.backgroundImage} styles={'bg-img'} />
-        {/* <DetailsTiles urlVal={urlVal} data={data[0]} userData={userData[0]} /> */}
+        <Background imgUrl={userData[0]?.backgroundImage} styles={'bg-img'} />
         <DetailsTiles urlVal={urlLocation?.pathname} data={data[0]} userData={userData[0]} />        
       </>)}
     </>
