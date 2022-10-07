@@ -26,12 +26,13 @@ export default function Home() {
    dispatch(onAppData(urlLocation?.pathname !== '/' ? userData[0]?.ownerMetaUserID : 4))
   }, [dispatch, data.length, userData.length, urlVal])
 
+
   return (
     <>
       {(message === "ERROR" || data?.length === 0 || userData?.length === 0) && '404 not found.'}
       {(isLoading) ? (<div className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : (
         <>
-          <Background imgUrl={data[0]?.coverMedia} styles={'bg-img'} />
+          <Background imgUrl={userData[0]?.coverMedia} styles={'bg-img'} />
           <HomeAnchorImg urlVal={urlLocation?.pathname} data={data[0]} userData={userData[0]} />
         </>
       )}
