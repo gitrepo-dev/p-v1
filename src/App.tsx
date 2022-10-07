@@ -14,9 +14,9 @@ function App() {
       <Suspense fallback={<div className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:name" element={<Home />} />
           <Route path="/details" element={<DetailsPage />} />
-          {/* <Route path={rot === '/' ? '/' : `/${location?.pathname?.split('/')?.at(-1)}`} element={<Home />} /> */}
-          {/* <Route path={rot === '/details' ? '/details' : `/details/${location?.pathname?.split('/')?.at(-1)}`} element={<DetailsPage />} /> */}
+          <Route path="/details/:name" element={<DetailsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

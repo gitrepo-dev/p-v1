@@ -2,7 +2,7 @@ import Background from 'components/background'
 import HomeAnchorImg from 'components/homeanchorimg'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { getUserProfileById, onAppData } from 'redux/actions/appActions'
 import { getApp } from 'redux/reducers/appReducer'
 import { getUser } from 'redux/reducers/userReducer'
@@ -15,10 +15,15 @@ export default function Home() {
 
   const [searchParams] = useSearchParams();
   const urlVal = searchParams.get('id')
-
+  const urlLocation = useLocation()
+  
   useEffect(() => {
-    dispatch(onAppData(urlVal ? urlVal : 4))
-    dispatch(getUserProfileById(urlVal ? urlVal : 4))
+    // dispatch(onAppData(urlVal ? urlVal : 4))
+    // dispatch(getUserProfileById(urlVal ? urlVal : 4))
+   // @ts-ignore
+   dispatch(getUserProfileById(urlLocation?.pathname !== '/' ? urlLocation?.pathname?.split('/')?.at(-1) : 'rahul'))
+   // @ts-ignore
+   dispatch(onAppData(urlLocation?.pathname !== '/' ? userData[0]?.ownerMetaUserID : 4))
   }, [dispatch, data.length, userData.length, urlVal])
 
   return (
@@ -27,7 +32,7 @@ export default function Home() {
       {(isLoading) ? (<div className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : (
         <>
           <Background imgUrl={data[0]?.coverMedia} styles={'bg-img'} />
-          <HomeAnchorImg urlVal={urlVal} data={data[0]} userData={userData[0]} />
+          <HomeAnchorImg urlVal={urlLocation?.pathname} data={data[0]} userData={userData[0]} />
         </>
       )}
     </>

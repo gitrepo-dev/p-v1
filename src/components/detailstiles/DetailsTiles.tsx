@@ -1,13 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
 
 export default function DetailsTiles({ urlVal, data, userData }: any) {
-  const navigate = useNavigate()
+  console.log(urlVal?.split('/').at(-1), 'urlVal')
   return (
     <div className="relative p-5 md:p-10">
-
-      <Link to={urlVal ? `/?id=${urlVal}` : '/'}>
+      {/* <Link to={urlVal ? `/?id=${urlVal}` : '/'}></Link> */}
+      <Link to={urlVal !== '/details' ? `/${urlVal?.split('/').at(-1)}` : '/'}>
         <div className="home-anchor mb-5">
           <div className="img-holder relative">
             <img src={userData?.metauserProfileLogo} alt="" className="w-full" />
